@@ -1,0 +1,3 @@
+Spring Boot源码阅读环境搭建
+（1）github下载release版本源码或git clone相应的版本
+（2）cmd进入源码目录，运行：mvnw.cmd clean install -DskipTests -Pfast
