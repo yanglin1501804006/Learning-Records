@@ -1,8 +1,10 @@
-Spring Boot源码阅读环境搭建
+Spring Boot源码阅读环境搭建:
 前置条件：安装git和maven，以及Java8，并配置环境变量。
 （1）github下载release版本源码或git clone相应的版本
 （2）cmd进入源码目录，运行：mvnw.cmd clean install -DskipTests -Pfast   
-	该命令是跳过测试用例
+	该命令是跳过测试用例。
 （3）mvnw.cmd -f spring-boot-project -Pfull clean install
 	使用该命令可以运行到测试用例，比较耗时。
-(4)使用eclipse导入maven工程。	
+ (4)使用eclipse导入maven已经存在本地的工程。	
+
+
