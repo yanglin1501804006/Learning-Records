@@ -5,3 +5,4 @@ Spring Boot源码阅读环境搭建
 	该命令是跳过测试用例
 （3）mvnw.cmd -f spring-boot-project -Pfull clean install
 	使用该命令可以运行到测试用例，比较耗时。
+(4)使用eclipse导入maven工程。	
