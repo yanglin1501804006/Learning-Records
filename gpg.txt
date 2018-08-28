@@ -1,0 +1,54 @@
+下载地址:
+
+https://www.gpg4win.org/download.html
+
+下载完成后，双击exe开始安装
+
+安装完成后，打开cmd命令行，执行以下命令
+
+1.查看gpg版本
+gpg --version
+2.生成key
+gpg --gen-key
+
+这里会有一个比较长的过程，依次按下空格，空格，空格，Y，然后开始填写信息
+
+Real name: 名字
+Email address: email地址
+Comment: 描述评论
+
+然后继续输入字母o，然后输入passphrase，比较重要，务必保存
+
+然后就可以看见下面的提示
+
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+pub   2048R/FG23JKT 2017-09-08
+      Key fingerprint = AAAA AAAA 32C5 AAAA 725F  FEA7 AAAA E749 FA3A AAAA
+uid       [ultimate] ABC (ABC) <ABC@126.com>
+sub   2048R/FG23JKT 2017-09-08
+
+此处FG23JKT就是我们生成的key，请保存下来
+
+
+3.查看公钥
+gpg --list-keys --keyid-format LONG
+
+4.查看私钥
+gpg --list-secret-keys --keyid-format LONG
+
+5.导出密钥
+gpg --armor --export 9854B******9EDA4
+之后在你的 Github Settings 中找到 SSH and GPG keys. 点击 new GPG key, 并将上方得到的全部内容复制进去，点击 add GPG key。
+
+最后我们还需要配置本地的 git：
+git config --global user.signingkey 9854B******9EDA4
+
+如果你希望当前项目使用 GPG 输入：
+
+git config commit.gpgsign true
+
+如果你希望所有 git 使用 GPG 输入：
+
+git config --global commit.gpgsign true
+
+参见https://blog.csdn.net/Faremax/article/details/71981601
