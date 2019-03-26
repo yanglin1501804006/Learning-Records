@@ -1,0 +1,17 @@
+   （1）JAVA_HOME
+   
+   C:\Program Files\Java\jdk1.6.0_26
+	 C:\Program Files\Java\jdk1.8.0_131
+   
+   
+   （2）CLASSPATH
+   
+   .;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar     
+
+
+   （3）PATH
+
+   %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
+   
+   
+  （4）java -version查看版本
