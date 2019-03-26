@@ -76,6 +76,18 @@ gradle build
 下载gradle包（写这个文档的时候最新的版本是5.3版本）
 wget https://downloads.gradle.org/distributions/gradle-5.3-bin.zip
 
+
+CentOS 6.5 这样下载的时候，出现这个错误
+[root@localhost ~]# wget https://downloads.gradle.org/distributions/gradle-5.3-bin.zip
+--2019-03-26 17:24:51--  https://downloads.gradle.org/distributions/gradle-5.3-bin.zip
+Resolving downloads.gradle.org... 104.18.191.9, 104.18.190.9, 2606:4700::6812:be09, ...
+Connecting to downloads.gradle.org|104.18.191.9|:443... connected.
+ERROR: certificate common name “ssl473435.cloudflaressl.com” doesn’t match requested host name “downloads.gradle.org”.
+To connect to downloads.gradle.org insecurely, use ‘--no-check-certificate’.
+使用这种提示信息既可以进行下载文件
+[root@localhost ~]# wget --no-check-certificate https://downloads.gradle.org/distributions/gradle-5.3-bin.zip
+
+
 解压并安装
 unzip -d /opt/gradle gradle-5.3-bin.zip
 
