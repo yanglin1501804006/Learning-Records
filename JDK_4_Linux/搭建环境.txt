@@ -1,0 +1,35 @@
+下载JDK8最新版本的步骤
+
+1.到官网复制下载链接
+
+http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+2.在xshell上输入命令
+wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u202-b08/1961070e4c9b4e26a04e7f5a083f551e/jdk-8u202-linux-x64.tar.gz
+
+3.下载完成之后解压
+下载的文件直接解压在/usr/local/jdk-8_202中
+
+tar -zxvf  jdk-8u202-linux-x64.tar.gz
+4.编辑配置文件，配置环境变量
+
+
+vim  /etc/profile
+
+添加如下内容：JAVA_HOME根据实际目录来
+#set java environment
+JAVA_HOME=/usr/local/jdk-8_202/jdk1.8.0_202
+CLASSPATH=$JAVA_HOME/lib/
+PATH=$PATH:$JAVA_HOME/bin
+export PATH JAVA_HOME CLASSPATH
+5.重启机器或执行命令 ：source /etc/profile  （该条命令执行完成之后不生效）
+或者sudo shutdown -r now
+
+6.查看安装情况
+java -version
+安装成功则出现java版本信息
+[root@localhost ~]# java -version
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+
