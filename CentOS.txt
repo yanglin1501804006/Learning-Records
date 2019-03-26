@@ -1,0 +1,151 @@
+
+python3安装完成之后，会出现如下的错误
+执行完make&&make install之后，可能会出现这种报错：
+“ModuleNotFound：No module named '_ctypes'”
+
+这里需要执行：
+yum install  -y zlib*
+yum install  -y libffi-devel 
+
+
+
+
+
+
+依赖
+yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make
+
+
+1、下载python3
+
+wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
+
+2、解压
+
+[root@mycentos ~]# tar -xzvf Python-3.7.1.tgz
+
+先建一个编译目录：
+
+[root@mycentos ~]# mkdir /usr/local/python3
+
+Python3.7版本需要一个新的包libffi-devel，安装此包之后再次进行编译安装即可。
+
+[root@mycentos ~]# yum install -y libffi-devel
+
+然后编译、安装：
+
+[root@mycentos ~]# cd Python-3.7.1
+[root@mycentos ~]# ./configure --prefix=/usr/local/python3
+[root@mycentos ~]# make
+[root@mycentos ~]# make install
+
+建立软链接：
+
+[root@mycentos ~]# ln -s /usr/local/python3/bin/python3 /usr/bin/python3
+
+查看版本：
+
+[root@mycentos ~]# python3 -V
+
+Python 3.7.1
+
+
+
+
+
+
+扩展python3 其他组件
+
+https://blog.csdn.net/qq874455953/article/details/82356191
+
+
+
+
+
+
+
+
+
+
+
+
+在 Unix/Linux 设置环境变量
+
+    在 csh shell: 输入
+
+    setenv PATH "$PATH:/usr/local/bin/python"
+
+    , 按下 Enter。
+	
+	
+    在 bash shell (Linux) 输入 :
+
+    export PATH="$PATH:/usr/local/bin/python" 
+
+    按下 Enter 。
+	
+	
+    在 sh 或者 ksh shell 输入:
+
+    PATH="$PATH:/usr/local/bin/python" 
+
+    按下 Enter。
+
+注意: /usr/local/bin/python 是 Python 的安装目录(就是./configure --prefix=/usr/local/python3)。
+
+vim /etc/profile 添加  export PATH="$PATH:/usr/local/bin/python" 
+
+
+
+PATH=$PATH:/usr/local/python3/bin/python3.7
+或者PATH=$PATH:/usr/bin/python3
+
+#!/usr/bin/python3
+
+在Linux/Unix系统中，你可以在脚本顶部添加以下命令让Python脚本可以像SHELL脚本一样可直接执行： 
+#! /usr/bin/env python3
+
+然后修改脚本权限，使其有执行权限，命令如下：
+
+$ chmod +x hello.py
+
+执行以下命令：
+
+./hello.py
+
+输出结果为：
+
+
+
+
+
+
+
+
+
+
+
+
+linux 学习
+Centos 查看内存
+https://www.cnblogs.com/SapphireCastle/p/6395137.html
+
+fdisk -l  
+
+df -h 
+
+
+简单的通过yum安装：
+yum install -y vim-enhanced
+
+安装完后查询是否安装成功
+rpm -qa | grep vim  
+
+
+如果个人习惯用命令vi,在环境变量设置文件/etc/bashrc最后添加一行: 
+alias vi='vim',执行source /etc/bashrc,刚才的设置即刻生效
+
+在Centos下设置Vim的永久显示行号功能
+
+
+
