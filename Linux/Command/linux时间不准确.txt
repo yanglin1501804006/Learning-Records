@@ -1,0 +1,28 @@
+我们在安装时选择的是上海
+这个时候的bios的时间和软件的时间是不一致的。一个代表 utc 一个代表我们设置的cst（＋8时区）
+
+1、编辑clock
+
+vi /etc/sysconfig/clock  
+ZONE="Asia/Shanghai"
+UTC=false #（主要是这个选项，设置硬件时钟不是跟utc一致）
+ARC=false
+
+2、linux的时区设置为 上海
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+
+3、对准时间
+ntpdate 192.43.244.18   
+
+这条命令在我的机器上显示 
+[root@localhost ~]# ntpdate 172.16.1.205
+27 Mar 16:38:44 ntpdate[47542]: no server suitable for synchronization found
+
+或者: date -s "20190327 16:37:00"  #yyyymmdd hh:mm:ss
+这条命令唯一的缺点就是手速不快，导致秒数差那么几秒钟
+
+4、设置硬件时间和软件时间的一致并校准
+/sbin/hwclock --systohc
+
+这样我们的linux软件和计算机硬件都是cst时间了－－并且是我们设置的上海时区
