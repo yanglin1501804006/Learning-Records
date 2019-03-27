@@ -1,0 +1,21 @@
+https://blog.csdn.net/lcx578176119/article/details/53414804/
+
+
+
+    源所在的目录:     /etc/yum.repos.d/    在更换之前可以先备份自己的源,防止出错,
+    Centos 5.X 安装阿里或者网易的源
+
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo  这个是阿里的源
+
+wget http://mirrors.163.com/.help/CentOS5-Base-163.repo 这个是网易的
+
+ 
+
+     3.Centos 6.X 安装阿里或者网易的源
+
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo      这个是6.X的阿里源
+
+ wget http://mirrors.163.com/.help/CentOS6-Base-163.repo   这个是网易的6.x的源
+
+
+4. 下载成功以后执行yum clean all 命令,然后执行yum makecache 命令,当yum makecache完成以后,源就安装完了
