@@ -1,0 +1,33 @@
+（1）CentOS 6.5 系统/etc/profile文件中用来配置环境变量，需要在文件的末尾添加
+
+JAVA_HOME=/usr/local/jdk-8_202/jdk1.8.0_202
+  GRADLE_HOME=/usr/local/gradle-5.3
+  GRADLE_USER_HOME=/usr/local/gradle-5.3/gradle_repo
+ CLASSPATH=$JAVA_HOME/lib/
+ PATH=$PATH:$JAVA_HOME/bin:$GRADLE_HOME/bin
+  export PATH JAVA_HOME CLASSPATH  GRADLE_HOME GRADLE_USER_HOME
+  
+  
+ （2） 如果按照上边的操作进行了。还是不能在打开一个新的窗口的时候让java环境变量生效，需要
+  在.bashrc 文件末尾添加上source /etc/profile ，.bashrc文件可以配置一些命令的重命名等操作。
+  [root@localhost ~]# pwd
+/root
+ [root@localhost ~]# tail ~/.bashrc
+  source /etc/profile
+  
+  
+ （3） PS：环境变量不要写如下错误的操作
+  PATH=$PATH:$JAVA_HOME/bin
+   PATH=$PATH:$GRADLE_HOME/bin
+
+这样会在打开一个新窗口时候
+java -verion 提示不能识别java命令
+gradle -v 提示不能识别gradle命令
+
+
+(4)echo $PATH 命令用来查看/etc/profile 文件中配置的环境变量
+[root@localhost ~]# echo $PATH
+/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/usr/local/git/bin:/usr/local/git/bin:/root/bin:/usr/local/jdk-8_202/jdk1.8.0_202/bin:/usr/local/gradle-5.3/bin
+
+
+本文中我使用的工具是xshell5，连接CentOS 6.5 使用ssh方式连接的.
