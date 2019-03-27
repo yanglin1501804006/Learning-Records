@@ -9,13 +9,15 @@ JAVA_HOME=/usr/local/jdk-8_202/jdk1.8.0_202
   
   
  （2） 如果按照上边的操作进行了。还是不能在打开一个新的窗口的时候让java环境变量生效，需要
+ 
   在.bashrc 文件末尾添加上source /etc/profile ，.bashrc文件可以配置一些命令的重命名等操作。
   [root@localhost ~]# pwd
 /root
  [root@localhost ~]# tail ~/.bashrc
   source /etc/profile
   
-  
+  或者在/etc/bashrc文件export PATH 处添加上终端上echo $PATH显示的信息。
+    
  （3） PS：环境变量不要写如下错误的操作
   PATH=$PATH:$JAVA_HOME/bin
    PATH=$PATH:$GRADLE_HOME/bin
@@ -29,5 +31,16 @@ gradle -v 提示不能识别gradle命令
 [root@localhost ~]# echo $PATH
 /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/usr/local/git/bin:/usr/local/git/bin:/root/bin:/usr/local/jdk-8_202/jdk1.8.0_202/bin:/usr/local/gradle-5.3/bin
 
+
+（5）Linux下 环境变量/etc/profile、/etc/bashrc、~/.bashrc的区别
+①/etc/profile: 
+该文件登录操作系统时，为每个用户设置环境信息，当用户第一次登录时,该文件被执行。也就是说这个文件对每个shell都有效，用于获取系统的环境信息。
+②/etc/bashrc： 
+为每一个运行bash shell的用户执行此文件，当bash shell被打开时,该文件被读取。也就是说，当用户shell执行了bash时，运行这个文件。
+③~/.bashrc 
+该文件存储的是专属于个人bash shell的信息，当登录时以及每次打开一个新的shell时,执行这个文件。在这个文件里可以自定义用户专属的个人信息。
+
+那么在用户登录系统时候，相关的文件执行顺序是什么呢。 
+在刚登录Linux时，首先启动 /etc/profile 文件，然后再启动用户目录下的 ~/.bash_profile、 ~/.bash_login或 ~/.profile文件中的其中一个，执行的顺序为：~/.bash_profile、 ~/.bash_login、 ~/.profile。如果 ~/.bash_profile文件存在的话，一般还会执行 ~/.bashrc文件。
 
 本文中我使用的工具是xshell5，连接CentOS 6.5 使用ssh方式连接的.
