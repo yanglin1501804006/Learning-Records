@@ -1,0 +1,225 @@
+由于Windows下编译实在是慢的要死，我用CentOS 6.5（我的系统使用阿里的YUM源）编译的
+
+（1）安装JDK8以上版本，并配置环境变量；
+（2）安装gradle 5.3版本，并配置环境变量；
+
+[root@localhost spring-framework-5.1.5.RELEASE]# gradle -v
+
+------------------------------------------------------------
+Gradle 5.3
+------------------------------------------------------------
+
+Build time:   2019-03-20 11:03:29 UTC
+Revision:     f5c64796748a98efdbf6f99f44b6afe08492c2a0
+
+Kotlin:       1.3.21
+Groovy:       2.5.4
+Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
+JVM:          1.8.0_202 (Oracle Corporation 25.202-b08)
+OS:           Linux 2.6.32-431.el6.x86_64 amd64
+
+（3）下载Spring5.1.5 源码并进行编译；
+
+以上准备工作做完成之后，切换到spring 跟路径，下边有spring-core等代码
+gradle objenesisRepackJar    下载spring环境需要的jar包
+gradle genJaxb               下载spring环境需要的jar包
+gradle cglibRepackJar        下载spring环境需要的jar包
+gradle cleanidea eclipse     生成eclipse项目结构，在spring源码根目录下生成.classpath和.project文件
+./gradlew build -x test      在spring各个源码模块下生成.classpath和.project文件
+
+注：win下执行如上命令之后，完成编译成功也同样可以的，我的是win下gradlew build -x test不能成功才使用CentOS 6.5了 。
+
+以下是CentOS 6.5环境下的步骤及其过程
+[root@localhost spring-framework-5.1.5.RELEASE]# gradle objenesisRepackJar
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 6.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/5.3/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 1m 43s
+1 actionable task: 1 executed
+[root@localhost spring-framework-5.1.5.RELEASE]# source /etc/profile
+[root@localhost spring-framework-5.1.5.RELEASE]# gradle cglibRepackJar
+
+Welcome to Gradle 5.3!
+
+Here are the highlights of this release:
+ - Feature variants AKA "optional dependencies"
+ - Type-safe accessors in Kotlin precompiled script plugins
+ - Gradle Module Metadata 1.0
+
+For more details see https://docs.gradle.org/5.3/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 6.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/5.3/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 1m 54s
+1 actionable task: 1 executed
+[root@localhost spring-framework-5.1.5.RELEASE]# gradle objenesisRepackJar
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 6.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/5.3/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 1s
+1 actionable task: 1 up-to-date
+[root@localhost spring-framework-5.1.5.RELEASE]# gradle genJaxb
+
+> Task :spring-oxm:genJaxb
+[ant:javac] : warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 6.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/5.3/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 10s
+1 actionable task: 1 executed
+[root@localhost spring-framework-5.1.5.RELEASE]# gradle cleanidea eclipse
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 6.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/5.3/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 11m 11s
+193 actionable tasks: 144 executed, 49 up-to-date
+[root@localhost spring-framework-5.1.5.RELEASE]# 
+
+[root@localhost spring-framework-5.1.5.RELEASE]# ./gradlew build -x test
+Downloading https://services.gradle.org/distributions/gradle-4.10.3-bin.zip
+..........................................................................
+
+Welcome to Gradle 4.10.3!
+
+Here are the highlights of this release:
+ - Incremental Java compilation by default
+ - Periodic Gradle caches cleanup
+ - Gradle Kotlin DSL 1.0-RC6
+ - Nested included builds
+ - SNAPSHOT plugin versions in the `plugins {}` block
+
+For more details see https://docs.gradle.org/4.10.3/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Task :api
+javadoc: warning - Multiple sources of package comments found for package "javax.transaction"
+javadoc: warning - Multiple sources of package comments found for package "javax.servlet"
+javadoc: warning - Multiple sources of package comments found for package "javax.servlet.http"
+javadoc: warning - Multiple sources of package comments found for package "javax.servlet.descriptor"
+javadoc: warning - Multiple sources of package comments found for package "javax.servlet.annotation"
+javadoc: warning - Error fetching URL: http://quartz-scheduler.org/api/2.2.1/
+javadoc: warning - Error fetching URL: http://fasterxml.github.io/jackson-core/javadoc/2.9/
+javadoc: warning - Error fetching URL: http://fasterxml.github.io/jackson-databind/javadoc/2.9/
+javadoc: warning - Error fetching URL: http://fasterxml.github.io/jackson-dataformat-xml/javadoc/2.9/
+/usr/local/spring-framework-5.1.5.RELEASE/spring-web/src/main/java/org/springframework/web/client/DefaultResponseErrorHandler.java:84: warning - Tag @see: reference not found: HttpStatus.Series#CLIENT_ERROR
+/usr/local/spring-framework-5.1.5.RELEASE/spring-web/src/main/java/org/springframework/web/client/DefaultResponseErrorHandler.java:84: warning - Tag @see: reference not found: HttpStatus.Series#SERVER_ERROR
+/usr/local/spring-framework-5.1.5.RELEASE/spring-web/src/main/java/org/springframework/web/client/DefaultResponseErrorHandler.java:115: warning - Tag @link: reference not found: HttpStatus.Series#CLIENT_ERROR
+/usr/local/spring-framework-5.1.5.RELEASE/spring-web/src/main/java/org/springframework/web/client/DefaultResponseErrorHandler.java:115: warning - Tag @link: reference not found: HttpStatus.Series#SERVER_ERROR
+/usr/local/spring-framework-5.1.5.RELEASE/spring-web/src/main/java/org/springframework/web/client/DefaultResponseErrorHandler.java:115: warning - Tag @link: reference not found: HttpStatus.Series#CLIENT_ERROR
+/usr/local/spring-framework-5.1.5.RELEASE/spring-web/src/main/java/org/springframework/web/client/DefaultResponseErrorHandler.java:115: warning - Tag @link: reference not found: HttpStatus.Series#SERVER_ERROR
+/usr/local/spring-framework-5.1.5.RELEASE/spring-core/src/main/java/org/springframework/cglib/proxy/Enhancer.java:772: warning - Tag @link: reference not found: EnhancerFactoryData
+/usr/local/gradle-5.3/gradle_repo/caches/modules-2/files-2.1/org.jboss.spec.javax.servlet/jboss-servlet-api_4.0_spec/1.0.0.Final/322892a664ab868bd3ec8561028111f1f928a3f0/jboss-servlet-api_4.0_spec-1.0.0.Final.jar/javax/servlet/ServletResponse.java:132: warning - Tag @link: reference not found: setCharacterEncoding
+/usr/local/gradle-5.3/gradle_repo/caches/modules-2/files-2.1/org.jboss.spec.javax.servlet/jboss-servlet-api_4.0_spec/1.0.0.Final/322892a664ab868bd3ec8561028111f1f928a3f0/jboss-servlet-api_4.0_spec-1.0.0.Final.jar/javax/servlet/ServletResponse.java:132: warning - Tag @link: reference not found: setContentType
+/usr/local/spring-framework-5.1.5.RELEASE/spring-tx/src/main/java/org/springframework/transaction/jta/WebLogicJtaTransactionManager.java:76: warning - Tag @see: reference not found: weblogic.transaction.UserTransaction#begin(String)
+/usr/local/spring-framework-5.1.5.RELEASE/spring-tx/src/main/java/org/springframework/transaction/jta/WebLogicJtaTransactionManager.java:76: warning - Tag @see: reference not found: weblogic.transaction.Transaction#setProperty
+/usr/local/spring-framework-5.1.5.RELEASE/spring-tx/src/main/java/org/springframework/transaction/jta/WebLogicJtaTransactionManager.java:76: warning - Tag @see: reference not found: weblogic.transaction.TransactionManager#forceResume
+/usr/local/spring-framework-5.1.5.RELEASE/spring-tx/src/main/java/org/springframework/transaction/jta/WebLogicJtaTransactionManager.java:76: warning - Tag @see: reference not found: weblogic.transaction.TransactionHelper
+/usr/local/spring-framework-5.1.5.RELEASE/spring-jdbc/src/main/java/org/springframework/jdbc/datasource/WebSphereDataSourceAdapter.java:71: warning - Tag @see: reference not found: com.ibm.websphere.rsadapter.JDBCConnectionSpec
+/usr/local/spring-framework-5.1.5.RELEASE/spring-jdbc/src/main/java/org/springframework/jdbc/datasource/WebSphereDataSourceAdapter.java:71: warning - Tag @see: reference not found: com.ibm.websphere.rsadapter.WSDataSource#getConnection(com.ibm.websphere.rsadapter.JDBCConnectionSpec)
+/usr/local/spring-framework-5.1.5.RELEASE/spring-jdbc/src/main/java/org/springframework/jdbc/datasource/WebSphereDataSourceAdapter.java:136: warning - Tag @see: reference not found: com.ibm.websphere.rsadapter.WSDataSource#getConnection(com.ibm.websphere.rsadapter.JDBCConnectionSpec)
+/usr/local/spring-framework-5.1.5.RELEASE/spring-jdbc/src/main/java/org/springframework/jdbc/datasource/WebSphereDataSourceAdapter.java:164: warning - Tag @see: reference not found: com.ibm.websphere.rsadapter.JDBCConnectionSpec
+/usr/local/spring-framework-5.1.5.RELEASE/spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java:249: warning - Tag @see cannot be used in inline documentation.  It can only be used in the following types of documentation: overview, package, class/interface, constructor, field, method.
+/usr/local/spring-framework-5.1.5.RELEASE/spring-core/src/main/java/org/springframework/cglib/core/AbstractClassGenerator.java:249: warning - Tag @see cannot be used in inline documentation.  It can only be used in the following types of documentation: overview, package, class/interface, constructor, field, method.
+28 warnings
+
+> Task :asciidoctor
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/index.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/overview.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/languages.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/testing-webtestclient.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/data-access-appendix.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/web-reactive.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/web.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/data-access.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/integration-appendix.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/integration.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/core.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/testing.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/index.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/overview.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/languages.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/testing-webtestclient.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/data-access-appendix.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/web-reactive.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/web.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/data-access.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/integration-appendix.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/integration.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/core.adoc
+Converting /usr/local/spring-framework-5.1.5.RELEASE/src/docs/asciidoc/testing.adoc
+
+> Task :spring-beans:compileTestJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :spring-context:compileTestJava
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :spring-oxm:genCastor
+[ant:javac] : warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+
+> Task :spring-oxm:genJaxb
+[ant:javac] : warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+
+> Task :spring-web:compileTestJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :spring-context-support:compileTestJava
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :spring-webmvc:compileTestJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :spring-context-indexer:compileTestJava
+warning: No processor claimed any of these annotations: javax.persistence.Entity,javax.persistence.MappedSuperclass,javax.persistence.Converter,org.junit.Test,org.springframework.stereotype.Controller,org.springframework.stereotype.Component,org.springframework.core.type.Scope,org.springframework.context.index.sample.MetaController,org.junit.Rule,org.springframework.stereotype.Service,org.springframework.beans.factory.annotation.Qualifier,org.springframework.stereotype.Indexed,javax.inject.Named,javax.persistence.Embeddable,org.springframework.stereotype.Repository,org.springframework.context.index.sample.MetaControllerIndexed,javax.annotation.ManagedBean,org.junit.Before
+1 warning
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 5.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/4.10.3/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 24m 3s
+284 actionable tasks: 284 executed
+
+
+（4）导入eclipse
+我使用的是file -- >import --> general --> existing projects into workspace
+
+如果使用win导入的话，将CentOS6.5步骤3生成的文件中.classpath引用关系手动调整好（引用关系指spring工程之间的引用和jar引用）
+
+（5）导入完成之后会部分模块编译不成功
+下载插件：
+Groovy Development Tools 3.2.0 RELEASE
+Buildship Gradle Integration 3.0 
+
+然后重启eclipse即可。
+
+
+最后注意的是我在win7下搭建Spring5.1.5的时候下边两步骤总是过不去。
+gradle cleanidea eclipse     生成eclipse项目结构，在spring源码根目录下生成.classpath和.project文件
+./gradlew build -x test      在spring各个源码模块下生成.classpath和.project文件
+
+
+
+
+
