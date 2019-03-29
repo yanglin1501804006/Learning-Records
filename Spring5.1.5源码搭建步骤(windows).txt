@@ -1,1 +1,204 @@
 
+本文是基于windows7搭建的Spring5.1.5源码环境
+
+（1）安装JDK8以上版本，并配置环境变量；
+
+配置环境变量
+JAVA_HOME  C:\Program Files\Java\jdk1.8.0_202
+CLASSPATH   .;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
+Path        %JAVA_HOME%\bin;
+
+检查JDK是否成功
+C:\Users\Administrator>java -version
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
+
+
+（2）安装gradle 5.3版本，并配置环境变量；
+
+配置环境变量
+GRADLE_HOME          D:\gradle-5.3
+Path                 %GRADLE_HOME%\bin
+GRADLE_USER_HOME     D:\gradle-5.3\repo_gradle
+
+检查 gradle是否成功
+C:\Users\Administrator>gradle -v
+
+------------------------------------------------------------
+Gradle 5.3
+------------------------------------------------------------
+
+Build time:   2019-03-20 11:03:29 UTC
+Revision:     f5c64796748a98efdbf6f99f44b6afe08492c2a0
+
+Kotlin:       1.3.21
+Groovy:       2.5.4
+Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
+JVM:          1.8.0_202 (Oracle Corporation 25.202-b08)
+OS:           Windows 7 6.1 amd64
+
+（3）下载Spring5.1.5 源码并进行编译；
+
+Spring5.1.5源码下载位置
+
+
+以上准备工作做完成之后，切换到spring 跟路径，下边有spring-core等代码
+gradle objenesisRepackJar    下载spring环境需要的jar包
+gradle genJaxb               下载spring环境需要的jar包
+gradle cglibRepackJar        下载spring环境需要的jar包
+gradle cleanidea eclipse     生成eclipse项目结构，在spring源码根目录下生成.classpath和.project文件
+./gradlew build -x test      在spring各个源码模块下生成.classpath和.project文件
+
+注：win下执行如上命令之后，完成编译成功也同样可以的，我的是win下gradlew build -x test不能成功才使用CentOS 6.5了 。
+
+以下是windows7环境下的步骤及其过程。
+
+【失败】Could not connect to the Gradle daemon.
+解决方法：劳资发现这个是由于防火墙问题，气死我了~~
+
+
+【失败】
+D:\spring\spring-framework-5.1.5>gradle objenesisRepackJar
+Starting a Gradle Daemon, 2 stopped Daemons could not be reused, use --status fo
+r details
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Could not connect to the Gradle daemon.
+Daemon uid: 46127adc-3b95-4628-8aee-41344931c811 with diagnostics:
+Daemon pid: 5404
+  log file: D:\gradle-5.3\repo_gradle\daemon\5.3\daemon-5404.out.log
+----- Last  20 lines from daemon log file - daemon-5404.out.log -----
+21:22:05.058 [DEBUG] [org.gradle.launcher.daemon.server.Daemon] DaemonExpiration
+PeriodicCheck running
+21:22:05.070 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting
+to acquire shared lock on daemon addresses registry.
+21:22:05.071 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acq
+uired on daemon addresses registry.
+21:22:05.071 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasin
+g lock on daemon addresses registry.
+21:22:05.072 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting
+to acquire shared lock on daemon addresses registry.
+21:22:05.073 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acq
+uired on daemon addresses registry.
+21:22:05.073 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasin
+g lock on daemon addresses registry.
+21:22:05.074 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting
+to acquire shared lock on daemon addresses registry.
+21:22:05.074 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acq
+uired on daemon addresses registry.
+21:22:05.075 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasin
+g lock on daemon addresses registry.
+21:22:15.049 [DEBUG] [org.gradle.launcher.daemon.server.Daemon] DaemonExpiration
+PeriodicCheck running
+21:22:15.052 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting
+to acquire shared lock on daemon addresses registry.
+21:22:15.053 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acq
+uired on daemon addresses registry.
+21:22:15.054 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasin
+g lock on daemon addresses registry.
+21:22:15.057 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting
+to acquire shared lock on daemon addresses registry.
+21:22:15.058 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acq
+uired on daemon addresses registry.
+21:22:15.059 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasin
+g lock on daemon addresses registry.
+21:22:15.062 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting
+to acquire shared lock on daemon addresses registry.
+21:22:15.063 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acq
+uired on daemon addresses registry.
+21:22:15.074 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasin
+g lock on daemon addresses registry.
+----- End of the daemon log -----
+
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug
+option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+
+【成功】
+D:\spring\spring-framework-5.1.5>gradle objenesisRepackJar
+Starting a Gradle Daemon, 3 stopped Daemons could not be reused, use --status fo
+r details
+
+Deprecated Gradle features were used in this build, making it incompatible with
+Gradle 6.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/5.3/userguide/command_line_interface.html#sec:comman
+d_line_warnings
+
+BUILD SUCCESSFUL in 1m 38s
+1 actionable task: 1 executed
+
+
+【成功】
+D:\spring\spring-framework-5.1.5>gradle genJaxb
+Starting a Gradle Daemon, 1 incompatible and 3 stopped Daemons could not be reus
+ed, use --status for details
+
+> Task :spring-oxm:genJaxb
+[ant:javac] : warning: 'includeantruntime' was not set, defaulting to build.sysc
+lasspath=last; set to false for repeatable builds
+
+Deprecated Gradle features were used in this build, making it incompatible with
+Gradle 6.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/5.3/userguide/command_line_interface.html#sec:comman
+d_line_warnings
+
+BUILD SUCCESSFUL in 30s
+1 actionable task: 1 executed
+
+【成功】
+D:\spring\spring-framework-5.1.5>gradle cglibRepackJar
+
+Deprecated Gradle features were used in this build, making it incompatible with
+Gradle 6.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/5.3/userguide/command_line_interface.html#sec:comman
+d_line_warnings
+
+BUILD SUCCESSFUL in 6s
+1 actionable task: 1 executed
+D:\spring\spring-framework-5.1.5>gradle cleanidea eclipse
+
+Deprecated Gradle features were used in this build, making it incompatible with
+Gradle 6.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/5.3/userguide/command_line_interface.html#sec:comman
+d_line_warnings
+
+BUILD SUCCESSFUL in 12m 7s
+193 actionable tasks: 144 executed, 49 up-to-date
+<-------------> 0% WAITING
+> IDLE
+> IDLE
+> IDLE
+> IDLE
+D:\spring\spring-framework-5.1.5>
+
+
+
+
+（4）导入eclipse
+我使用的是file -- >import --> general --> existing projects into workspace
+
+（5）导入完成之后会部分模块编译不成功
+下载插件：
+Groovy Development Tools 3.2.0 RELEASE
+Buildship Gradle Integration 3.0 
+
+然后重启eclipse即可。
+
+
+
+
+
+
+
+
