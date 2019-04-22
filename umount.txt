@@ -1,0 +1,32 @@
+当出现这个种情况得时候有如下解决方案
+
+umount: /root: device is busy.
+
+
+-bash-4.1# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        18G   17G  524M  97% /
+tmpfs           7.7G   72K  7.7G   1% /dev/shm
+/dev/sda1       291M   39M  238M  14% /boot
+/dev/sdb1        30G  173M   28G   1% /root
+-bash-4.1# pwd
+/
+-bash-4.1# umount /root
+umount: /root: device is busy.
+        (In some cases useful info about processes that use
+         the device is found by lsof(8) or fuser(1))
+		 
+##解决这个问题的办法		 
+-bash-4.1# fuser -m -v /root
+                     USER        PID ACCESS COMMAND
+/root:               root       2290 F.... java
+-bash-4.1# fuser -m -v -k /root
+                     USER        PID ACCESS COMMAND
+/root:               root       2290 F.... java
+-bash-4.1# fuser -m -v /root
+-bash-4.1# umount /root
+-bash-4.1# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        18G   17G  524M  97% /
+tmpfs           7.7G   72K  7.7G   1% /dev/shm
+/dev/sda1       291M   39M  238M  14% /boot
