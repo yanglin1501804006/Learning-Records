@@ -1,0 +1,65 @@
+本文采用的是源码安装的方式，使用CentOS 6.5版本进行安装
+
+##下载libevent源码包
+wget https://github.com/libevent/libevent/releases/download/release-2.1.8-stable/libevent-2.1.8-stable.tar.gz
+##解压源码
+tar -zxvf libevent-1.x.x.tar.gz                   
+##配置
+./configure --prefix=/usr/local/libevent
+##编译，安装
+make && make install
+
+##测试libevent是否安装成功
+ls -al /usr/local/libevent/lib | grep libevent
+
+
+##下载memcached源码包
+wget https://memcached.org/files/memcached-1.5.14.tar.gz
+##解压源码
+tar -zxvf memcached-1.x.x.tar.gz 
+##配置
+./configure --prefix=/usr/local/memcached  --with-libevent=/usr/local/libevent
+##编译，安装
+make && make install
+##测试memcached是否安装成功
+ls -al /usr/local/memcached/bin | grep memcached
+
+##配置环境变量 
+[root@localhost ~]#cd ~
+[root@localhost ~]#vi /etc/profile
+参考这个：
+MEMCACHED=/usr/local/memcached/bin
+export PATH JAVA_HOME CLASSPATH  GRADLE_HOME GRADLE_USER_HOME MEMCACHED
+
+##使配置环境文件生效
+[root@localhost ~]# source /etc/profile
+
+##测试memcached环境变量是否生效
+ ps -ef | grep memcached
+ 
+ 
+ ##查找memcached 的进程 id:
+  ps -ef|grep memcached
+ ## 停止进程
+ kill pid
+ ##启动memcached
+ /usr/local/memcached/bin/memcached -d -m 1024 -u root -l 172.16.1.205 -p 11211 -c 1024 -P /tmp/memcached.pid
+ 
+ 
+ PS:
+ ##如果你不需要追求最新版本，那么推荐使用 yum 安装(使用yum安装不同的Linux安装memcached的时候版本不一样，是因为和OS自身yum源有关系)，
+ ##因为整体安装方便且简单。而如果你对版本有要求而且又需要实现更多的自定义功能，那么建议使用源码编译安装
+ ##yum 安装libevent
+  yum install libevent-devel
+  yum install memcached
+  
+##可以参考这个文档
+https://www.jianshu.com/p/aaddd5bec329
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
