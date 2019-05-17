@@ -1,0 +1,13 @@
+##下载
+$ wget http://download.redis.io/releases/redis-5.0.5.tar.gz
+##解压
+$ tar -vxzf redis-5.0.5.tar.gz
+$ cd redis-5.0.5
+##编译
+$ make
+
+##开启redis服务
+$ src/redis-server
+
+##使用客户端进行连接redis
+$ src/redis-cli
