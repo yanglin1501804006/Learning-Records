@@ -39,7 +39,7 @@ MongoDB Windows下环境搭建
  （5）将mongodb配置为window服务
  
  执行cmd命令：
- mongod --bind_ip 127.0.0.1 --port 27017 --config D:\MongoDB-4.0.9\bin\mongodb.cfg --serviceName "MongoDB" --install
+ mongod --bind_ip 127.0.0.1 --port 27017 --config D:\MongoDB-4.0.9\bin\mongod.cfg --serviceName "MongoDB" --install
  查看window服务，如果没有启动右键启动即可。
  
  （6）命令行操作MongoDB
