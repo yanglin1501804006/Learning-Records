@@ -1,0 +1,50 @@
+MongoDB Windows下环境搭建
+
+（1）下载MongoDB并进行安装
+  官方网站下载路径 www.mongodb.com/download-center#community
+  
+（2）高版本其实在安装完成之后已经自动创建data文件和log文件夹了，并且bin文件夹下已经有mongod.cfg文件，log文件夹已经被创建并有mongod.log日志文件。
+
+	  dbpath=D:\MongoDB-4.0.9\data #数据库路径
+　　logpath=C:\MongoDB\Server\logs.log #日志输出文件路径
+　　logappend=true #错误日志采用追加模式，配置这个选项后mongodb的日志会追加到现有的日志文件，而不是从新创建一个新文件
+　　journal=true #启用日志文件，默认启用
+　　quiet=true #这个选项可以过滤掉一些无用的日志信息，若需要调试使用请设置为false
+　　port=27017 #端口号 默认为27017
+  
+（3）加入环境变量
+ 将D:\MongoDB-4.0.9\bin加入环境变量
+ 然后打开cmd输入 mongo --help 有大量回显表示加入成功。
+ 
+ eg:mongo --version 查看版本
+ MongoDB shell version v4.0.9
+ git version: fc525e2d9b0e4bceff5c2201457e564362909765
+ allocator: tcmalloc
+ modules: none
+ build environment:
+    distmod: 2008plus-ssl
+    distarch: x86_64
+    target_arch: x86_64
+ 
+ （4）配置数据路径和日志路径
+ 
+ 指定数据库路径(安装服务): 
+ mongod --dbpath D:\MongoDB-4.0.9\data\db
+ 在db目录下会自动创建了很多文件。
+ 
+ 验证:在浏览器输入localhost:27017
+  It looks like you are trying to access MongoDB over HTTP on the native driver port.
+  出现这个字符提示说明成功安装好服务了。
+ 
+ （5）将mongodb配置为window服务
+ 
+ 执行cmd命令：
+ mongod --bind_ip 127.0.0.1 --port 27017 --config D:\MongoDB-4.0.9\bin\mongodb.cfg --serviceName "MongoDB" --install
+ 查看window服务，如果没有启动右键启动即可。
+ 
+ （6）命令行操作MongoDB
+ net start MongoDB ##启动MongoDB服务
+ net stop MongoDB ##关闭MongoDB服务
+ C:\mongodb\bin\mongod.exe --remove ##移除 MongoDB 服务
+ 
+ 
