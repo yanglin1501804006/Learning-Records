@@ -1,0 +1,15 @@
+(1)查找
+/pattern             从光标开始处向文件尾搜索pattern
+?pattern             从光标开始处向文件首搜索pattern
+n: 在同一方向重复上一次搜索命令
+N: 在反方向上重复上一次搜索命令
+
+(2)替换
+:s/p1/p2/g           将当前行中所有p1均用p2替代
+:n1,n2s/p1/p2/g      将第n1至n2行中所有p1均用p2替代
+:n,$s/vivian/sky/g   替换第n行开始到最后一行中每一行所有vivian为sky
+:.s/word1/word2/g    在当前行进行替换操作。
+:33s/word1/word2/g   在第33行进行替换操作。
+:$s/word1/word2/g    在最后一行进行替换操作
+:%s/word1/word2/g    对所有行的内容进行替换
+PS:最后边不带g表示替换找到的第一个
