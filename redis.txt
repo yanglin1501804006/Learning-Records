@@ -119,68 +119,17 @@ redis.conf 配置项说明如下：
 
      vm-pages 134217728
 
-26. 设置访问swap文件的线程数,最好不要超过机器的核数,如果设置为0,那么所有对swap文件的操作都是串行的，可能会造成比较长时间的延迟。默认值为4
-
-     vm-max-threads 4
-
-27. 设置在向客户端应答时，是否把较小的包合并为一个包发送，默认为开启
-
-    glueoutputbuf yes
-
-28. 指定在超过一定的数量或者最大的元素超过某一临界值时，采用一种特殊的哈希算法
-
-    hash-max-zipmap-entries 64
-
-    hash-max-zipmap-value 512
-
-29. 指定是否激活重置哈希，默认为开启（后面在介绍Redis的哈希算法时具体介绍）
-
-    activerehashing yes
-
-30. 指定包含其它的配置文件，可以在同一主机上多个Redis实例之间使用同一份配置文件，而同时各个实例又拥有自己的特定配置文件
-
-    include /path/to/local.conf
-	
-	
-	
-	
-概念什么是守护进程？
-
-守护进程（Daemon Process），也就是通常说的 Daemon 进程（精灵进程），是 Linux 中的后台服务进程。它是一个生存期较长的进程，通常独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。
-
-守护进程是个特殊的孤儿进程，这种进程脱离终端，为什么要脱离终端呢？之所以脱离于终端是为了避免进程被任何终端所产生的信息所打断，其在执行过程中的信息也不在任何终端上显示。由于在 linux 中，每一个系统与用户进行交流的界面称为终端，每一个从此终端开始运行的进程都会依附于这个终端，这个终端就称为这些进程的控制终端，当控制终端被关闭时，相应的进程都会自动关闭。
+26. 设置访问swap文件的线程数,最好不要
 
 
 
-Redis遇到的问题汇总：
-（1）Invalid argument during startup: unknown conf file parameter : requirepass
-redis 设置来密码，出现来这个错误，把配置文件那一行的 空格 去掉
-# requirepass foobared
-改成
-requirepass 123456
-因为# 和 requirepass 之间有一个空格
 
-客户端连接redis命令操作
-redis-cli.exe -h 127.0.0.1 -p 6379 -a redis
+在使用another redis  desktop manager工具（https://github.com/qishibo/AnotherRedisDesktopManager/releases）连接的时候有时候连接远程linux连接不上，可修改redis.conf文件
 
-启动redis服务 
-redis-server.exe redis.windows.conf
+（1）src/redis-server   redis.conf   ##使用这种方式启动redis服务器
+（2）bind 127.0.0.1 本地IP
+（3）daemonize yes  ##启用守护进程
 
-
-1.redis 启动
-
-打开一个命令窗口，进入到你解压的目录，输入命令：redis-server redis.windows.conf
-
-2.部署redis为windows下的服务 命令如下：
-
-再打开一个新的命令窗口，输入命令：redis-server --service-install redis.windows.conf
-
-3.安装后的启动服务命令：redis-server --service-start
-
-4.停止服务命令：redis-server --service-stop
-
-redis的卸载命令：redis-server --service-uninstall
-
-推荐一个redis的管理工具：Redis Desktop Manager
-
-到此结束
+PS:
+ps -ef | grep redis  ##查看redis的pid
+kill  -9  PID  ##杀掉redis进程的命令
