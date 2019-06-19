@@ -1,0 +1,14 @@
+
+（1）这个链接是Spring官方参考文档的位置，其中docs里边包含API文档和Spring使用文档（全TM是英文的）
+
+https://repo.spring.io/release/org/springframework/spring/
+
+
+
+（2）介绍一下HTML本地离线文档转chm文档的方法：
+
+下载软件javadoc2chm.exe，其官方链接为 http://jan.baresovi.cz/dr/en/en/javadoc-chm
+安装过程中系统会检测有没有安装Microsoft HTML HELP，若没有，请到官网下载，Microsoft HTML HELP.exe下载网址
+为http://msdn.microsoft.com/en-us/library/ms669985.aspx
+PS：我使用这个转换完成的Spring5.1.8版本的chm文档，在某一个包下的接口显示
+an class = ，但是类的显示是正常的。但是总体是能用的，想要完美的话直接使用HTML离线版本即可。
