@@ -1,0 +1,18 @@
+访问 https://github.com/medcl/elasticsearch-analysis-ik  找 releases 找到对应的 es 版本
+
+elasticsearch-analysis-ik6.2.2从如下连接中下载了，在github上没有找到6.2.2版本，这个elasticsearch-analysis-ik最好和elasticsearch版本保持一致。
+【https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.2.2/elasticsearch-analysis-ik-6.2.2.zip】
+
+版本可以按照上边6.2.2下载方式，
+比如https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.3.0/elasticsearch-analysis-ik-6.3.0.zip 下载6.3.0版本，
+这种方式主要用于releases中找不到对应的 es 版本的ik才这么下载，有的话直接在releases中直接下载即可。
+
+下载 elasticsearch-analysis-ik-6.3.0.zip ，
+
+E:\mall_software\elasticsearch-6.2.2\ 为我的es 安装目录
+
+①  E:\mall_software\elasticsearch-6.2.2\plugins 下 新建 ik 目录
+
+② 把解压的文件内容copy放入 ik 目录下 。
+③ 重启es ,OK 了。
+点击E:\mall_software\elasticsearch-6.2.2\bin下的elasticsearch.bat进行启动。
