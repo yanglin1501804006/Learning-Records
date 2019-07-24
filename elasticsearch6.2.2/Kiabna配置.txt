@@ -1,0 +1,22 @@
+一、安装Kiabna
+　　　　
+
+　　　　Kibana是一个为 ElasticSearch 提供的数据分析的 Web 接口。可使用它对日志进行高效的搜索、可视化、分析等各种操作。
+
+
+　　　　Kiabna的介绍可查考官方的说明:https://www.elastic.co/cn/products/kibana 
+
+　　　　下载地址为：https://www.elastic.co/cn/downloads/kibana
+    
+ 修改config / kibana.yml文件,加入以下内容:
+ 将这四个放开：
+ server.port: 5601
+ server.host: "localhost"
+ server.name: "Kibana"
+ elasticsearch.url: "http://localhost:9200"
+ 
+ 然后执行bin目录下的kibana.bat启动服务。
+ 浏览器访问地址:http://127.0.0.1:5601/
+ 
+ 算了，这个文章不写了，看不懂这个玩意儿。
+ 参考自如下链接: https://www.cnblogs.com/shaosks/p/7466950.html
