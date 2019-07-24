@@ -7,9 +7,7 @@ RabbitMQ是一个在AMQP协议标准基础上完整的，可复用的企业消�
 
 <font color=#0099ff size=4 face="黑体">一：安装Erlang</font>
 
-安装Erlang 时要注意安装的RabbityMQ 所依赖的Erlang版本，根据RabbitMQ的要求选择一个版本，这里我要安装的RabbitMQ的版本是 3.7.14 （官网说
-3.7.7~3.7.14），他依赖的Erlang版本范围是20.3.x~21.3.x(这个范围参考官网https://www.rabbitmq.com/which-erlang.html说明)，这里我选择版本
-是OTP 21.3其[下载地址](https://www.cnblogs.com/ericli-ericli/p/5902270.html) 。下载Erlang安装包后直接安装就可以了。
+安装Erlang 时要注意安装的RabbityMQ 所依赖的Erlang版本，根据RabbitMQ的要求选择一个版本，这里我要安装的RabbitMQ的版本是 3.7.14 ，其实官方网站上3.7.7~3.7.14之间的版本，他们依赖的Erlang版本范围是20.3.x~21.3.x(这个范围参考官网https://www.rabbitmq.com/which-erlang.html说明)，这里我选择版本是OTP 21.3其[下载地址](https://www.cnblogs.com/ericli-ericli/p/5902270.html) 。下载Erlang安装包后直接安装就可以了。
 
 
 设置ERLANG_HOME 环境变量
