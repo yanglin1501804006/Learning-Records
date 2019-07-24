@@ -1,0 +1,9 @@
+问题来源：idea 打开一个新的项目，maven都需要重新配置，解决方案
+
+所以需要有个默认全局配置
+解决办法：
+File->Other Settings -> Default Settings
+将Maven home directory目录修改成我们自定安装Maven的目录
+
+
+ 
