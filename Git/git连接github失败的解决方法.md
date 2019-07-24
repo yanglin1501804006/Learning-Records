@@ -17,3 +17,8 @@ $ vi .git/config
 把 [remote “origin”] 那一行删掉就好了。
 
 
+
+Git上传本地项目到github上：
+https://www.cnblogs.com/sdcs/p/8270029.html
+
+
