@@ -1,0 +1,63 @@
+Windows 下安装RabbitMQ服务器及基本配置
+
+RabbitMQ是一个在AMQP协议标准基础上完整的，可复用的企业消息系统。它遵循Mozilla Public License开源协议，采用 Erlang 实现的工业级的消息队列(MQ)服务器，Rabbit MQ 是建立在Erlang OTP平台上。
+
+安装RabbitMQ服务器必须首先安装 Erlang 运行环境。
+
+
+
+**一：安装Erlang**
+
+安装Erlang 时要注意安装的RabbityMQ 所依赖的Erlang版本，根据RabbitMQ的要求选择一个版本，这里我要安装的RabbitMQ的版本是 3.7.14 （官网说
+3.7.7~3.7.14），他依赖的Erlang版本范围是20.3.x~21.3.x(这个范围参考官网https://www.rabbitmq.com/which-erlang.html说明)，这里我选择版本
+是OTP 21.3，下载地址：https://www.cnblogs.com/ericli-ericli/p/5902270.html 。下载Erlang安装包后直接安装就可以了。
+
+
+设置ERLANG_HOME 环境变量
+
+
+
+变量名      ERLANG_HOME
+
+变量值      E:\mall_software\erlang21.3\bin\erl.exe
+
+我这里是默认安装所以Erlang的安装路径在：E:\mall_software\erlang21.3\bin\erl.exe
+
+	注意：如果之前安装了Erlang的其他版本，需要卸载后在进行重新安装和设置。
+
+**二：安装RabbitMQ**
+
+可以在RabbitMQ的官方网站下载最新版本的RabbitMQ服务器安装程序，[RabbitMQ下载地址](http://www.rabbitmq.com/install-windows.html)， 这里我下载的是官方推荐的最新版本rabbitmq-server-3.7.14.exe， 然后点击安装。
+
+RabbitMQ安装好后是作为windows service 运行在后台。
+
+
+设置RabbitMQ环境变量
+windows7不能改变环境变量对话框的大小，这里就不截图啦。
+
+变量名    RABBITMQ_SERVER
+
+变量值    E:\mall_software\rabbitmq3.7.14\rabbitmq_server-3.7.14
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
