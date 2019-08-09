@@ -12,7 +12,7 @@
 
 得到ip:
 
-  ![image](https://github.com/yanglin1501804006/Learning-Records/blob/master/Git/images/github.global.ssl.fastly.net .png)
+  ![image](https://github.com/yanglin1501804006/Learning-Records/blob/master/Git/images/github.global.ssl.fastly.net.png)
 
   ![image](https://github.com/yanglin1501804006/Learning-Records/blob/master/Git/images/github.com.png)
 
