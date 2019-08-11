@@ -63,9 +63,9 @@ https://dev.mysql.com/downloads/mysql/5.7.html#downloads
 
       输入变量名：MYSQL_HOME
 
-      输入变量值：basedir=E:\mysql-5.7.27
+      输入变量值：E:\mysql-5.7.27
 
-      即为mysql的自定义解压目录。
+      即为mysql的自定义解压目录【安装目录】。
 
 2）选择系统变量中的Path
 
@@ -82,6 +82,15 @@ https://dev.mysql.com/downloads/mysql/5.7.html#downloads
 	
 	这条命令含义是安装mysql服务。
 	成功会提示"Service successfully installed"
+	
+	
+6.检测服务界面中的mysql服务的路径
+
+	当出现：启动Mysql后找不到服务或出现找不到指定文件。  错误信息是：windows无法启动mysql服务。
+	
+	解决方法是：
+	* 主要服务的路径不正确，需要进入注册表cmd-->regedit-->HKEY_LOCAL_MACHINE-->SYSTEM-->CurrentControlSet-->services-->Mysql
+	* 修改ImagePath为mysql所安装的路径下的mysqld即可
 
 三、测试MySQL
 
