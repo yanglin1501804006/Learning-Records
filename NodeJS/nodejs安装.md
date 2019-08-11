@@ -47,7 +47,7 @@
 
 	然后我们打开cmd命令行界面，在使用命令安装刚才的cluster模块，命令如下：
 
-		npm install cluster -g
+		npm install cluster -g   # -g是全局安装的意思
 
 	然后打开刚才创建的node_global目录，可以看到此时cluster目录就安装到这个目录底下了。
 
@@ -56,7 +56,7 @@
 		NODE_PATH
 		变量值填：E:\mall_software\nodejs8.9.4\node_modules\
 
-	此时还需要修改一些nodejs默认的模块调用路径，因为模块的安装位置变了，如果nodejs的命令还到原来的位置去找，肯定是找不到安装的模块了。我们在环境变量窗口，选择Path，然后点击右下角的编辑，然后选择npm那个。点击右边的编辑，将其修改为：E:\mall_software\nodejs8.9.4\node_global\，配置保存即可。
+	此时还需要修改一些nodejs默认的模块调用路径，因为模块的安装位置变了，如果nodejs的命令还到原来的位置去找，肯定是找不到安装的模块了。我们在【用户变量】窗口，选择Path，然后点击右下角的编辑，然后选择npm相关那个Path，点击右边的编辑，将其修改为：E:\mall_software\nodejs8.9.4\node_global\，配置保存即可。
 
 
 <font color=#0099ff size=4 face="黑体">5：测试node和npm配置</font>
