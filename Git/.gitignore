@@ -1,9 +1,11 @@
 ##ignore this file##
-/target/
-.classpath
-.project
-.settings
-/build/
+##中间目录包含target/目录
+target/
+*.classpath
+*.project
+*.settings
+##中间目录包含build/目录
+build/
   
 ##filter databfile、sln file##
 *.mdb
